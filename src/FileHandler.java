@@ -6,6 +6,7 @@ import StævneTræningsTider.TræningsTid;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintStream;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -72,7 +73,6 @@ public class FileHandler {
                     } catch (NumberFormatException e) {
                         System.out.println("Skipper linje da der er formatteringsfejl på linje(" + linjeNummer + "): " + linje);
                     }
-
                 }
             }
             // Efter filen er læst, opdater Medlem.nextID så næste medlem får det rette ID
@@ -101,12 +101,9 @@ public class FileHandler {
     }
 
 
-
-
-
-
     //indlæser informationer fra den lokale fil, og instancere objekter af StævneTid i stævneTid arraylisten, som består af disse objekter
     public void stævneTidReadFile(){
+
         try{
             FileReader fileStævne = new FileReader(stævneTiderFil); // Opretter en FileReader til at læse filen
             Scanner scStævne = new Scanner(fileStævne); // Scanner til at læse linjerne i filen
@@ -147,6 +144,8 @@ public class FileHandler {
             }
 
             scStævne.close();
+            //efter fillen er indlæst, så bliver den sorteret efter stævnenavn
+            tidsLister.getStævneTider().sort(Comparator.comparing(StævneTid::getStævneNavn));
 
         } catch(FileNotFoundException e) {
             System.out.println("Kunne ikke finde fil" + e.getMessage());
@@ -155,6 +154,8 @@ public class FileHandler {
     }
     //gemmer informationer i stævneTid Arraylisten i en lokal fil
     public void stævneTidWriteToFile(){
+        //Sortere stævneTider listen efter stævne navn, hvorefter det bliver skrevet til fillen, hjælper på min OCD
+        tidsLister.getStævneTider().sort(Comparator.comparing(StævneTid::getStævneNavn));
         try {
             PrintStream stævneFilSkriver = new PrintStream(stævneTiderFil);
 
@@ -166,13 +167,13 @@ public class FileHandler {
         } catch(FileNotFoundException e){
             System.out.println("Kunne ikke skrive til fillen");
         }
+
     }
-
-
 
 
     //indlæser informationer fra den lokale fil, og instancere objekter af TræningsTid i træningsTid arraylisten, som består af disse objekter
     public void træningsTidReadFile() {
+
         try{
             FileReader træningfile = new FileReader(træningsTiderFil); // Opretter en FileReader til at læse filen
             Scanner scTræning = new Scanner(træningfile); // Scanner til at læse linjerne i filen
@@ -188,8 +189,6 @@ public class FileHandler {
                 String[] data = linje.split(";");
                 if (data.length >= 7) {
                     try {
-
-
                         String træningNavn = data[0].trim();
                         String aldersGruppe = data[1].trim();
                         double træningTid = Double.parseDouble(data[2].trim());
@@ -199,7 +198,6 @@ public class FileHandler {
                         int træningDag = Integer.parseInt(data[6].trim());
 
                         tidsLister.addTræningsTid(træningNavn, aldersGruppe, træningTid, træningDisiplin, træningÅr, træningMåned, træningDag);
-
 
                     } catch (NumberFormatException e) {
                         System.out.println("Skipper linje da der er formatteringsfejl på linje(" + træningLinjeNummer + "): " + linje);
@@ -212,22 +210,22 @@ public class FileHandler {
         } catch(FileNotFoundException e) {
             System.out.println("Kunne ikke finde fil" + e.getMessage());
         }
+        //sortere træningsTider listen efter navn, efter at de er blevet indlæst fra fillen
+        tidsLister.getTræningsTider().sort(Comparator.comparing(TræningsTid:: getMedlemsNavn));
     }
-
 
     //gemmer informationer i træningsTid Arraylisten i en lokal fil
     public void træningsTidWriteToFile(){
+        tidsLister.getTræningsTider().sort(Comparator.comparing(TræningsTid:: getMedlemsNavn));
+        //sortere arraylisten efter navn, gemmer den efterfølgende
         try{
             PrintStream træningsFilSkriver = new PrintStream(træningsTiderFil);
             for(TræningsTid i: tidsLister.getTræningsTider()){
                 træningsFilSkriver.println(i.getMedlemsNavn() + "; " + i.getAldersGruppe() + "; " + i.getTid() + "; " + i.getDisciplin() + "; " + i.getTræningDato());
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("kunne ikke skrive til filen");
         }
     }
-
-
 }
 

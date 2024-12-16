@@ -14,7 +14,6 @@ public class UI {
     LocalDate iDag = LocalDate.now();
 
 
-
     public UI(MedlemsListe medlemsListe, TidsLister tidsLister) {
         this.medlemsListe = medlemsListe;
         this.tidsLister = tidsLister;
@@ -109,7 +108,6 @@ public class UI {
     //metode der modtager inputs fra brugeren og efterfølgende instancere er medlem i "MedlemsListe" klassen
     private void opretMedlem() {
         System.out.println("\nHvad er navnet?");
-        //sc.nextLine(); //Fjerner inputBuffer
         String navn = sc.nextLine();
 
         System.out.println("\nHvor gammel er personen? ");
@@ -136,7 +134,6 @@ public class UI {
         sc.nextLine(); //Fjerner inputBuffer
         System.out.println("Hvad er personens email?");
         String email = sc.nextLine();
-
 
         boolean typeLoop = true;
         String typeSvømmer = "";
@@ -306,8 +303,7 @@ public class UI {
             System.out.println("\u001B[38m"); // Gør så den får hvid som farve
             System.out.println("Ændringer gemt.");
 
-        } while (valg != 5);
-        fileHandler.medlemmersInformationerWriteToFile();
+        } while (valg != 6);
     }
 
 

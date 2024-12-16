@@ -50,8 +50,6 @@ public class MedlemsListe {
         return fundneMedlemmer;
     }
 
-
-
     // Søgning i listen
     public Medlem søgMedlemVedID(int ID) {
         for (Medlem medlem : medlemmer) {
@@ -62,7 +60,6 @@ public class MedlemsListe {
         System.out.println("Intet medlem med ID: " + ID + " blev fundet.");
         return null;
     }
-
 
     //iterare igennem medlemmer listen, og beregner den årlige kontigent for medlemmer der ikke er i restance
     public void beregnSamletKontigent() {
@@ -110,5 +107,4 @@ public class MedlemsListe {
             }
         }
     }
-
 }

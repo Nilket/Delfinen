@@ -10,7 +10,6 @@ public class StævneTid {
     private int placering;
     private double tid;
     private LocalDate dato;
-    private ArrayList<StævneTid> stævneTid = new ArrayList<>();
     private String aldersGruppe;
 
 
@@ -46,27 +45,6 @@ public class StævneTid {
 
 
 
-    // Setters
-    public void setMedlemsNavn(String medlemsNavn){this.medlemsNavn = medlemsNavn;}
-    public void setStævneNavn(String stævneNavn) {
-        this.stævneNavn = stævneNavn;
-    }
-    public void setDisciplin(Disciplin disciplin) {
-        this.disciplin = disciplin;
-    }
-    public void setPlacering(int placering) {
-        this.placering = placering;
-    }
-    public void setTid(double tid) {
-        this.tid = tid;
-    }
-
-
-    public void visStævnetider() {
-        for (StævneTid i : stævneTid) {
-            System.out.println(i);
-        }
-    }
     //Metode til at konvertere datoen for et registreret stævne tid, fra typen LocalDate til en string
     //Så den kan blive gemt i en lokal fil
     public String getStævneDato() {

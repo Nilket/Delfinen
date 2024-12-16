@@ -15,7 +15,6 @@ public class Medlem {
     private String restanceFarve;
     private String aldersGruppe;
 
-
     //Kontruktøren for medlems klassen
     public Medlem(String navn, int alder, boolean aktiv, String email, int år, int måned, int dag, String typeSvømmer) {
         this.memberID = nextID;
@@ -65,7 +64,6 @@ public class Medlem {
         done += tekstDato[0];
         done +=";" + tekstDato[1];
         done +=";" + tekstDato[2];
-
         return done;
     }
     public String getTypeSvømmer(){
@@ -74,7 +72,6 @@ public class Medlem {
     public String getAldersGruppe(){
         return aldersGruppe;
     }
-
 
     // Setters
     public void setNavn(String nyNavn) {
@@ -95,7 +92,6 @@ public class Medlem {
     public void setPrisKontigent(int alder, boolean aktiv){ // metoder der bliver kaldt, når et medlems informationer bliver redigeret,
         // fx går de fra ikke at være aktiv til aktiv, og de skal derfor betale mere i kontigent.
         double kontigent;
-
         if (aktiv) {
             if (alder < 18){
                 kontigent = 1000;
@@ -153,7 +149,6 @@ public class Medlem {
             aldersGruppe = "Junior";
         } else {
             aldersGruppe = "Senior";
-
         }
         return aldersGruppe;
     }

@@ -8,7 +8,6 @@ public class TræningsTid {
     private String medlemsNavn;
     private Disciplin disciplin;
     private LocalDate dato;
-    private ArrayList<TræningsTid> træningsTid = new ArrayList<>();
     private String aldersGruppe;
 
 
